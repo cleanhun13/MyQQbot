@@ -1,6 +1,14 @@
+import os
 import nonebot
 
+import config
+
 if __name__ == '__main__':
-    nonebot.init()
+    nonebot.init(config)
     nonebot.load_builtin_plugins()
-    nonebot.run(host='127.0.0.1', port=8080)
+    # 加载自定义插件
+    nonebot.load_plugins(
+        os.path.join(os.path.dirname(__file__), 'awesome', 'plugins'),
+        'awesome.plugins'
+    )
+    nonebot.run()
